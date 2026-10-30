@@ -75,6 +75,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      sha256: "5ed34a7925b85336e15d472cc4cfe7d9ebf4ab8e8b9f688585bf6b50f4c3d79a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.7.3"
   leak_tracker:
     dependency: transitive
     description:
@@ -208,6 +216,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.3.0"
+  web:
+    dependency: transitive
+    description:
+      name: web
+      sha256: e119e82ac4795c7925103b7cf3768191f33941b99e7ccffbd6c645201d9f606b
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
 sdks:
   dart: ">=3.13.5 <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
