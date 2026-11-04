@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
-  //declare object atau var yang diperlukan
+class MyTextField extends StatefulWidget {
   final String label;
   final String hint;
   final TextEditingController textEditingController;
   final bool isPassword;
   final IconData icon;
   final double fontSize;
-  // dll
 
   const MyTextField({
     super.key,
@@ -21,33 +19,57 @@ class MyTextField extends StatelessWidget {
   });
 
   @override
+  State<MyTextField> createState() => _MyTextFieldState();
+}
+
+class _MyTextFieldState extends State<MyTextField> {
+  bool isObscure = true;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: TextStyle(fontSize: fontSize)),
+        Text(widget.label, style: TextStyle(fontSize: widget.fontSize)),
         Container(
           margin: const EdgeInsets.all(10),
           child: TextField(
-            controller: textEditingController,
-            obscureText: isPassword,
+            controller: widget.textEditingController,
+            obscureText: widget.isPassword && isObscure,
             decoration: InputDecoration(
-              hintText: hint,
-              prefixIcon: Icon(icon),
+              hintText: widget.hint,
+              prefixIcon: Icon(widget.icon),
+
+              suffixIcon: widget.isPassword
+                  ? IconButton(
+                      icon: Icon(
+                        isObscure ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                    )
+                  : null,
+
               filled: true,
               fillColor: Colors.grey.shade100,
-              contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-              border:OutlineInputBorder(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 14,
+                horizontal: 12,
+              ),
+              border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey.shade300),
-              ),  
+              ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.blue),
+                borderSide: const BorderSide(color: Colors.blue),
               ),
             ),
           ),

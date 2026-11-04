@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:latihan_flutter/components/mybutton.dart';
 import 'package:latihan_flutter/components/mytextfield.dart';
 import 'package:latihan_flutter/components/myimage.dart';
+import 'package:get/get.dart';
+import 'package:latihan_flutter/routes/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -77,14 +78,14 @@ class _LoginPageState extends State<LoginPage> {
               borderRadius: 10,
               fontSize: 18,
               onPressed: () {
-                setState(() {
-                  if (txtUsername.text == "admin" &&
-                      txtPassword.text == "admin") {
-                    statusLogin = "Login Berhasil";
-                  } else {
+                if (txtUsername.text == "admin" &&
+                    txtPassword.text == "admin") {
+                  Get.offAllNamed(Routes.home);
+                } else {
+                  setState(() {
                     statusLogin = "Login Gagal";
-                  }
-                });
+                  });
+                }
               },
             ),
 
